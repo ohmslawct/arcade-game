@@ -9,7 +9,7 @@
  * drawn but that is not the case. What's really happening is the entire "scene"
  * is being drawn over and over, presenting the illusion of animation.
  *
- * This engine makes the canvas' context (ctx) object globally available to make 
+ * This engine makes the canvas' context (ctx) object globally available to make
  * writing app.js a little simpler to work with.
  */
 
@@ -23,6 +23,9 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+
+    var collisionCount = 0;
+
 
     canvas.width = 505;
     canvas.height = 606;
@@ -50,6 +53,7 @@ var Engine = (function(global) {
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
+
         lastTime = now;
 
         /* Use the browser's requestAnimationFrame function to call this
@@ -66,6 +70,7 @@ var Engine = (function(global) {
         reset();
         lastTime = Date.now();
         main();
+        var collisionCount = 0;
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -79,7 +84,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -90,11 +95,41 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
-            enemy.update(dt);
-        });
+        // allEnemies.forEach(function(enemy) {
+        //     enemy.update(dt);
+        // });
+
+       // refactor to arrow function syntax
+
+        allEnemies.forEach( enemy => enemy.update(dt));
+
         player.update();
     }
+
+    function checkCollisions(){
+
+        collision =
+        ( playerX > enemy1.x - 15 && playerX < enemy1.x + 15 ) && (playerY > enemy1.y - 60 && playerY < enemy1.y + 60 )
+        ||
+        ( playerX > enemy2.x - 15 && playerX < enemy2.x + 15 ) && (playerY > enemy2.y - 60 && playerY < enemy2.y + 60 )
+        ||
+        ( playerX > enemy3.x - 15 && playerX < enemy3.x + 15 ) && (playerY > enemy3.y - 60 && playerY < enemy3.y + 60 );
+
+        if (collision)
+        {
+            collisionCount++;
+            playerY = playerY + 200;
+            console.log("Collission Count: " + collisionCount);
+
+            if (collisionCount >= 3){
+              alert('Game Over');
+              location.reload();
+            //  reset();
+            }
+        }
+    }
+
+
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -109,15 +144,15 @@ var Engine = (function(global) {
         var rowImages = [
                 'images/water-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/lego-block-tan.png',   // Row 2 of 3 of stone
+                'images/lego-block-green.png',   // Row 3 of 3 of stone
+                'images/lego-block-green.png',   // Row 1 of 2 of grass
+                'images/lego-block-green.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height)
 
@@ -161,7 +196,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+    //  location.reload();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -172,8 +207,11 @@ var Engine = (function(global) {
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
-        'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/enemy-bug3.png',
+        'images/char-boy.png',
+        'images/flint-the-spy.png',
+        'images/lego-block-tan.png',
+        'images/lego-block-green.png'
     ]);
     Resources.onReady(init);
 
