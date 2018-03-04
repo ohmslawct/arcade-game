@@ -1,6 +1,20 @@
-frontend-nanodegree-arcade-game
-===============================
+# Gage's Brick Walking Game
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of Contents
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+* [Overview](#overview)
+* [Known Bugs](#known)
+* [Miscellany](#miscellany)
+
+## Overview
+This is simple game written in the programming language Javascript. It was created as a project for Udacity, by Bruce Seymour in February of 2018.  The artwork was created by Bruce's six year old son, Gage.
+
+##### Instructions
+Traverse to the opposite site of the brick landscape to win.  Use the UP/DOWN/LEFT/RIGHT arrow keys on the keyboard to navigate your player across the brick landscape.  Avoid the monsters.  If the monsters touch your player, your player will be knocked back.  If you touch a monster three times the game is over.
+
+## Known Bugs
+-  The known unknown.
+
+## Miscellany
+The projects is based on the Udacity starter project: https://github.com/udacity/frontend-nanodegree-arcade-game
+[Udacity](https://www.udacity.com)
