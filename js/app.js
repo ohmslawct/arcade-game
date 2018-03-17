@@ -1,3 +1,5 @@
+//'use strict';
+
 // Enemies our player must avoid
 var Enemy = function() {
   // Variables applied to each of our instances go here,
@@ -41,38 +43,38 @@ function Player() {
   this.handleInput = function(key) {
 
     if (key == "left") {
-      player.x = player.x - 101;
-      if (player.x < 0) {
-        player.x = 0
+      this.x = this.x - 101;
+      if (this.x < 0) {
+        this.x = 0
       };
     };
 
     if (key == "right") {
-      player.x = player.x + 101
-      if (player.x > 402) {
-        player.x = 402
+      this.x = this.x + 101
+      if (this.x > 402) {
+        this.x = 402
       };
 
     }
 
     if (key == "up") {
-      player.y = player.y - 30
-      if (player.y < 0) {
-        player.y = 0
+      this.y = this.y - 30
+      if (this.y < 0) {
+        this.y = 0
       };
     }
 
     if (key == "down") {
-      player.y = player.y + 30
-      if (player.y > 430) {
+      this.y = this.y + 30
+      if (this.y > 430) {
         player.y = 430
       };
     }
 
-    if (player.y == 0) {
+    if (this.y == 0) {
       alert('You Win');
-      player.x = 0;
-      player.y = 430;
+      this.x = 0;
+      this.y = 430;
     }
   }
 }(function makePlayerImage() {
@@ -106,7 +108,7 @@ var enemy3 = new Enemy();
 enemy3.x = 80;
 enemy3.y = 300;
 
-allEnemies.push(enemy1, enemy2, enemy3);
+allEnemies.push(enemy1, enemy3);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

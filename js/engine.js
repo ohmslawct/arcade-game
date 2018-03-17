@@ -107,17 +107,19 @@ var Engine = (function(global) {
 
   function checkCollisions() {
 
-    collision = (player.x > enemy1.x - 15 && player.x < enemy1.x + 15) && (player.y > enemy1.y - 60 && player.y < enemy1.y + 60)
-    || (player.x > enemy2.x - 15 && player.x < enemy2.x + 15) && (player.y > enemy2.y - 60 && player.y < enemy2.y + 60)
-    || (player.x > enemy3.x - 15 && player.x < enemy3.x + 15) && (player.y > enemy3.y - 60 && player.y < enemy3.y + 60);
+allEnemies.forEach( function (enemy){
+  collision = (player.x > enemy.x - 25 && player.x < enemy.x + 25) && (player.y > enemy.y - 100 && player.y < enemy.y + 100)
+});
+
 
     if (collision) {
       collisionCount++;
-      player.y = player.y + 200;
+      player.y = player.y + 100;
 
       if (collisionCount >= 3) {
         alert('Game Over');
         location.reload();
+        player.y = 430;
         //  reset();
       }
     }
