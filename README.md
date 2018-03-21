@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Overview](#overview)
-* [Loading Instructions](#Loading Instructions)
+* [Loading Instructions](#Loading)
 * [Miscellany](#miscellany)
 
 ## Overview
