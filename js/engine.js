@@ -107,22 +107,40 @@ var Engine = (function(global) {
 
   function checkCollisions() {
 
-allEnemies.forEach( function (enemy){
-  collision = (player.x > enemy.x - 25 && player.x < enemy.x + 25) && (player.y > enemy.y - 100 && player.y < enemy.y + 100)
-});
+    allEnemies.forEach(function(enemy, index) {
 
+      //  collision = (player.x > enemy.x - 31 && player.x < enemy.x + 31); && (player.y > enemy.y - 101 && player.y < enemy.y + 101)
 
-    if (collision) {
-      collisionCount++;
-      player.y = player.y + 100;
+      collisionX = (player.x > enemy.x - 70 && player.x < enemy.x + 70);
+      collisionY = (player.y > enemy.y - 50 && player.y < enemy.y + 50);
+      collision = collisionX && collisionY;
 
-      if (collisionCount >= 3) {
-        alert('Game Over');
-        location.reload();
-        player.y = 430;
-        //  reset();
+      // console.log(`
+      // Enemy Index ${index}
+      // Enemy X= ${enemy.x}
+      // Enemy Y= ${enemy.y}
+      // X Collision: ${collisionX}
+      // Y Collision: ${collisionY}
+      // Collision: ${collision}
+      // Player X= ${player.x}
+      // Player Y= ${player.y}
+      // `)
+
+      if (collision) {
+        collisionCount++;
+        player.y = player.y + 100;
+        console.log(`Collision`);
+
+        if (collisionCount >= 3) {
+          alert('Game Over');
+          location.reload();
+          player.y = 430;
+
+        }
       }
-    }
+
+    });
+
   }
 
   /* This function initially draws the "game level", it will then call
@@ -139,9 +157,9 @@ allEnemies.forEach( function (enemy){
         'images/lego-block-green2.png', // Top row is water
         'images/lego-block-green2.png', // Row 1 of 3 of stone
         'images/lego-block-tan.png', // Row 2 of 3 of stone
-        'images/lego-block-green.png', // Row 3 of 3 of stone
-        'images/lego-block-green.png', // Row 1 of 2 of grass
-        'images/lego-block-green.png' // Row 2 of 2 of grass
+        'images/lego-block-green2.png', // Row 3 of 3 of stone
+        'images/lego-block-green2.png', // Row 1 of 2 of grass
+        'images/lego-block-green2.png' // Row 2 of 2 of grass
       ],
       numRows = 6,
       numCols = 5,
@@ -190,9 +208,7 @@ allEnemies.forEach( function (enemy){
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-  function reset() {
-
-  }
+  function reset() {}
 
   /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
